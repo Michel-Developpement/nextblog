@@ -1,21 +1,47 @@
 "use client";
+import PageContainer from "@/components/page-container";
+import PosList from "@/components/post-list";
 import { Button } from "@/components/ui/button";
-import Image from "next/image";
+import { Input } from "@/components/ui/input";
+import { CATEGORYS } from "@/utils/categorys";
+import POSTS from "@/utils/posts";
+import Link from "next/link";
 import { useRouter } from "next/navigation";
 
 export default function Home() {
   const router = useRouter();
   return (
-    <main className="flex min-h-screen flex-col items-center justify-between p-24">
-      <Button onClick={() => router.push("/login")} variant={"outline"}>
-        Login
-      </Button>
-      <Button
-        onClick={() => router.push("/category/react")}
-        variant={"outline"}
-      >
-        React
-      </Button>
-    </main>
+    <PageContainer>
+      <div className="py-10 px-4">
+        <div
+          style={{ backgroundImage: "url(/img/image.png)" }}
+          className="rounded-lg aspect-square md:aspect-[2.4/1] overflow-hidden bg-cover lg:w-full"
+        >
+          <div className="h-full w-full flex flex-col justify-center items-center">
+            <div className="sm:max-w-xl max-w-xs bg-secondary/80 rounded-lg">
+              <h1 className="font-bold text-3xl sm:text-5xl md:text-black sm:text-white text-center mb-4 dark:text-white">
+                How Become a Better Software Engeneier
+              </h1>
+              <Input
+                type="email"
+                placeholder="Enter your email"
+                className="dark:bg-white"
+              />
+              <Button size="lg" className="w-full py-6 text-xl mt-4">
+                Subsribe to newsletter
+              </Button>
+            </div>
+          </div>
+        </div>
+        <div className="flex flex-col mt-6 md:flex-row gap-2 justify-center items-center">
+          {CATEGORYS.map((category) => (
+            <Button variant="outline" key={category.id} className="m-2">
+              <Link href={`/category/${category.slug}`}>{category.name}</Link>
+            </Button>
+          ))}
+        </div>
+        <PosList items={POSTS} />
+      </div>
+    </PageContainer>
   );
 }

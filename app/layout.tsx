@@ -21,9 +21,11 @@ export default function RootLayout({
     <html lang="en">
       <body className={inter.className}>
         <ThemeProvider attribute="class" defaultTheme="system" enableSystem>
-          <Header />
-          {children}
-          <Footer />
+          <div className="flex flex-col justify-between min-h-screen">
+            <Header />
+            <div className="flex-grow">{children}</div>
+            <Footer />
+          </div>
         </ThemeProvider>
       </body>
     </html>

@@ -1,3 +1,4 @@
+import Link from "next/link";
 import { HeaderNavigation } from "./header-navigation";
 import PageContainer from "./page-container";
 import ProfileButton from "./profile-button";
@@ -12,9 +13,11 @@ export default function Header() {
           <div className="flex items-center gap-2">
             <ResponsiveMenu />
           </div>
-          <h1 className="text-3xl font-bold text-transparent bg-clip-text bg-gradient-to-br from-red-500 to-blue-600">
-            NextBlog
-          </h1>
+          <Link href="/">
+            <h1 className="text-3xl font-bold text-transparent bg-clip-text bg-gradient-to-br from-red-500 to-blue-600">
+              NextBlog
+            </h1>
+          </Link>
           <HeaderNavigation />
           <div className="flex items-center gap-2">
             <ToggleTheme />

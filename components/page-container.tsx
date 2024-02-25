@@ -5,5 +5,5 @@ export default function PageContainer({
 }: {
   children: React.ReactNode;
 }) {
-  return <div className="mw-auto w-full max-w-7xl">{children}</div>;
+  return <div className="mw-auto mx-auto w-full max-w-7xl">{children}</div>;
 }
