@@ -3,13 +3,16 @@ import PageContainer from "@/components/page-container";
 import PosList from "@/components/post-list";
 import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
-import { CATEGORYS } from "@/utils/categorys";
-import POSTS from "@/utils/posts";
+import useCategorys from "@/hooks/useCategorys";
+import { usePosts } from "@/hooks/usePosts";
+import { Catergory } from "@prisma/client";
 import Link from "next/link";
 import { useRouter } from "next/navigation";
 
 export default function Home() {
   const router = useRouter();
+  const { data: posts, isFetching } = usePosts();
+  const { data: categorys } = useCategorys();
   return (
     <PageContainer>
       <div className="py-10 px-4">
@@ -34,13 +37,13 @@ export default function Home() {
           </div>
         </div>
         <div className="flex flex-col mt-6 md:flex-row gap-2 justify-center items-center">
-          {CATEGORYS.map((category) => (
+          {categorys?.map((category: Catergory) => (
             <Button variant="outline" key={category.id} className="m-2">
-              <Link href={`/category/${category.slug}`}>{category.name}</Link>
+              <Link href={`/category/${category.slug}`}>{category.title}</Link>
             </Button>
           ))}
         </div>
-        <PosList items={POSTS} />
+        {!isFetching && <PosList items={posts} />}
       </div>
     </PageContainer>
   );

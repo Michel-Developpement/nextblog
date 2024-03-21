@@ -1,4 +1,4 @@
-import { Post } from "@/types";
+import { Post } from "@prisma/client";
 import { Eye, MessageCircle } from "lucide-react";
 import Image from "next/image"; // Import the Image component from the appropriate package
 import Link from "next/link";
@@ -25,7 +25,7 @@ export default function PostCard({ post }: PostCardProps) {
           <p className="font-semibold text-lg mt-3">{post.title}</p>
         </CardHeader>
         <CardContent>
-          <Badge variant="outline">{post.category}</Badge>
+          <Badge variant="outline">{post.catSlug}</Badge>
         </CardContent>
         <CardFooter>
           <div className="flex gap-2">
@@ -35,7 +35,8 @@ export default function PostCard({ post }: PostCardProps) {
             </div>
             <div className="flex items-center gap-1">
               <Eye size={20} className="text-slate-500" />
-              <p className="text-slate-500">{post.nbViews}</p>
+              <p className="text-slate-500">{post.views}</p>
+              <p className="text-slate-500">by {post.author}</p>
             </div>
           </div>
         </CardFooter>

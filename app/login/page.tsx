@@ -12,11 +12,11 @@ export default function LoginPage() {
       <div className="flex flex-col gap-4 mb-4 max-w-sm mx-auto">
         <Button>
           <Github />
-          sigon in with Github
+          sign in with Github
         </Button>
         <Button>
           <Mail />
-          sigon in with Github
+          sign in with Google
         </Button>
       </div>
     </PageContainer>
