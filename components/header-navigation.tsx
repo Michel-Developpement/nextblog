@@ -1,7 +1,7 @@
 "use client";
 
-import * as React from "react";
 import Link from "next/link";
+import * as React from "react";
 
 import { cn } from "@/lib/utils";
 // import { Icons } from "@/components/icons"
@@ -14,10 +14,11 @@ import {
   NavigationMenuTrigger,
   navigationMenuTriggerStyle,
 } from "@/components/ui/navigation-menu";
-import { CATEGORYS } from "@/utils/categorys";
-import { Category } from "@/types";
+import useCategorys from "@/hooks/useCategorys";
+import { Catergory } from "@prisma/client";
 
 export function HeaderNavigation() {
+  const { data: categorys } = useCategorys();
   return (
     <NavigationMenu>
       <NavigationMenuList>
@@ -59,9 +60,9 @@ export function HeaderNavigation() {
           <NavigationMenuTrigger>Categorys</NavigationMenuTrigger>
           <NavigationMenuContent>
             <ul className="grid w-[400px] gap-3 p-4 md:w-[500px] md:grid-cols-2 lg:w-[600px] ">
-              {CATEGORYS.map((category: Category) => (
+              {categorys?.map((category: Catergory) => (
                 <ListItem key={category.id} href={`/category/${category.slug}`}>
-                  {category.name}
+                  {category.title}
                 </ListItem>
               ))}
             </ul>
